@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>PC-Mix Dataset Demo</title>
+
+<style>
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 40px;
+  color: #222;
+}
+
+h1 {
+  font-size: 34px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.oneliner {
+  color: #444;
+  margin: 0 0 22px 0;
+  line-height: 1.5;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+th {
+  background: linear-gradient(90deg,#2b5876,#4e4376);
+  color: white;
+  padding: 14px;
+  font-weight: 600;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+tr:hover {
+  background: #f7f9fc;
+}
+
+.section {
+  margin-top: 50px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: white;
+}
+
+.train { background:#3498db; }
+.dev { background:#27ae60; }
+.eval { background:#9b59b6; }
+
+audio {
+  width: 260px;
+}
+
+.sample {
+  background: white;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+/* --- Link cards --- */
+.links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.linkcard {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.linkcard .title {
+  font-weight: 650;
+  margin-bottom: 6px;
+}
+
+.linkcard .desc {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+
+.linkbtn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(90deg,#2b5876,#4e4376);
+}
+
+.linkbtn:hover {
+  opacity: 0.92;
+}
+
+.placeholder {
+  opacity: 0.75;
+  font-style: italic;
+}
+
+@media (max-width: 1100px) {
+  .links { grid-template-columns: repeat(2, minmax(180px, 1fr)); }
+}
+@media (max-width: 620px) {
+  .links { grid-template-columns: 1fr; }
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>PC-Mix Dataset</h1>
+<div class="subtitle">
+  Partial Spoof Dataset with Controlled Speech-Background Mixing
+</div>
+
+<p class="oneliner">
+  PC-Mix pairs speech from <b>PartialSpoof v1.2</b> with a <b>self-curated partial-spoof background pool</b> to create controlled speech–background authenticity combinations.
+  The <b>original</b> samples are collected from <b>VGGSound</b> and <b>AudioCaps</b>.
+</p>
+<!-- Resources / links -->
+<div class="section">
+  <h2>Resources</h2>
+  <div class="links">
+    <div class="linkcard">
+      <div class="title">GitHub</div>
+      <div class="desc">Code, protocols, and demo assets.</div>
+      <!-- TODO: replace href -->
+      <a class="linkbtn" href="#" target="_blank" rel="noopener">GitHub (TBD)</a>
+      <div class="desc placeholder" style="margin-top:10px;">Replace “#” with your repo link.</div>
+    </div>
+
+    <div class="linkcard">
+      <div class="title">Paper</div>
+      <div class="desc">Dataset description and baselines.</div>
+      <!-- TODO: replace href -->
+      <a class="linkbtn" href="#" target="_blank" rel="noopener">PDF / arXiv (TBD)</a>
+      <div class="desc placeholder" style="margin-top:10px;">Replace “#” with your paper link.</div>
+    </div>
+
+    <div class="linkcard">
+      <div class="title">Hugging Face</div>
+      <div class="desc">Dataset card and hosted files.</div>
+      <!-- TODO: replace href -->
+      <a class="linkbtn" href="#" target="_blank" rel="noopener">HF Dataset (TBD)</a>
+      <div class="desc placeholder" style="margin-top:10px;">Replace “#” with your HF link.</div>
+    </div>
+
+    <div class="linkcard">
+      <div class="title">Download</div>
+      <div class="desc">Direct download entry (mirror / drive / checksum).</div>
+      <!-- TODO: replace href -->
+      <a class="linkbtn" href="#" target="_blank" rel="noopener">Download (TBD)</a>
+      <div class="desc placeholder" style="margin-top:10px;">Replace “#” with your download link.</div>
+    </div>
+  </div>
+</div>
+
+<!-------------------------------------->
+<div class="section">
+  <h2>Dataset Statistics</h2>
+
+  <table>
+    <tr>
+      <th>Split</th>
+      <th>Mixed Samples</th>
+      <th>Original Samples</th>
+      <th>Background Source</th>
+      <th>Event Source</th>
+      <th>Fusion Method</th>
+    </tr>
+
+    <tr>
+      <td><span class="badge train">Train</span></td>
+      <td>25,380</td>
+      <td>6,345</td>
+      <td>SONYC</td>
+      <td>
+        60% AudioLDM2<br>
+        40% UrbanSound8K (0–1s)
+      </td>
+      <td>Ducking Overlay</td>
+    </tr>
+
+    <tr>
+      <td><span class="badge dev">Dev</span></td>
+      <td>24,844</td>
+      <td>6,211</td>
+      <td>
+        Urban Background Sound Recordings<br>
+        for Virtual Acoustics
+      </td>
+      <td>
+        60% AudioLDM2<br>
+        40% ESC-50 (0–1s)
+      </td>
+      <td>Ducking Overlay</td>
+    </tr>
+  </table>
+</div>
+
+<!-------------------------------------->
+<div class="section">
+  <h2>Evaluation Sets</h2>
+
+  <table>
+    <tr>
+      <th>Subset</th>
+      <th>Mixed</th>
+      <th>Original</th>
+      <th>Background</th>
+      <th>Event</th>
+      <th>Fusion</th>
+    </tr>
+
+    <tr>
+      <td>E0 Baseline</td>
+      <td>17,809</td>
+      <td>17,809</td>
+      <td>SONYC</td>
+      <td>
+        60% AudioLDM2<br>
+        40% FSD50K (0–1s)
+      </td>
+      <td>Ducking Overlay</td>
+    </tr>
+
+    <tr>
+      <td>E1 Generator OOD</td>
+      <td>14,247</td>
+      <td>-</td>
+      <td>SONYC</td>
+      <td>AudioGen</td>
+      <td>Ducking Overlay</td>
+    </tr>
+
+    <tr>
+      <td>E2 Fusion OOD</td>
+      <td>14,247</td>
+      <td>-</td>
+      <td>SONYC</td>
+      <td>AudioLDM2</td>
+      <td>
+        Energy Matching<br>
+        + Crossfade (20–80ms)
+      </td>
+    </tr>
+
+    <tr>
+      <td>E3 Background OOD</td>
+      <td>17,809</td>
+      <td>-</td>
+      <td>TAU Urban Acoustic Scenes</td>
+      <td>AudioLDM2</td>
+      <td>Ducking Overlay</td>
+    </tr>
+
+    <tr>
+      <td>E4 Noise OOD</td>
+      <td>7,125</td>
+      <td>-</td>
+      <td>WHAM Noise</td>
+      <td>AudioLDM2</td>
+      <td>Ducking Overlay</td>
+    </tr>
+  </table>
+</div>
+
+<!-------------------------------------->
+<div class="section">
+  <h2>Audio Demo</h2>
+
+  <div class="sample">
+    <h3>Example 1</h3>
+
+    <table>
+      <tr>
+        <th>Type</th>
+        <th>Audio</th>
+      </tr>
+
+      <tr>
+        <td>Original</td>
+        <td>
+          <audio controls preload="metadata">
+            <source src="C:/Users/lol29/Desktop/sounds/original.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Speech Bona + Background Bona</td>
+        <td>
+          <audio controls preload="metadata">
+            <source src="./sounds/sp_bona_bg_bona.wav" type="audio/wav">
+          </audio>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Speech Bona + Background Spoof</td>
+        <td>
+          <audio controls preload="metadata">
+            <source src="./sounds/sp_bona_bg_spoof.wav" type="audio/wav">
+          </audio>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Speech Spoof + Background Bona</td>
+        <td>
+          <audio controls preload="metadata">
+            <source src="./sounds/sp_spoof_bg_bona.wav" type="audio/wav">
+          </audio>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Speech Spoof + Background Spoof</td>
+        <td>
+          <audio controls preload="metadata">
+            <source src="./sounds/sp_spoof_bg_spoof.wav" type="audio/wav">
+          </audio>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
